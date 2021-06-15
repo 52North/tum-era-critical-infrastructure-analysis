@@ -1,11 +1,14 @@
-FROM python:3.6.9-buster
-
-RUN apt-get update && apt-get install -y python3 python3-pip
+FROM python:3.6.9-slim-buster
 
 WORKDIR /usr/share/git/system_reliability
 
 COPY requirements.txt .
-RUN pip3 install -r requirements.txt
+
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip && \
+    pip3 install -r requirements.txt && \
+    apt-get remove -y python3-pip && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY . .
 
