@@ -1,7 +1,7 @@
 version: '3.0'
 services:
-    critical-infra:
-        image: 52north/tum-era-critical-infrastructure-analysis:latest
+    critical-infra-single:
+        image: 52north/tum-era-critical-infrastructure-analysis-single:latest
         build: .
         volumes:
             - ./output:/tmp/output/
@@ -9,4 +9,17 @@ services:
             - INPUT_HAZARD=earthquake
             - INPUT_COUNTRY=peru
             - INPUT_INTENSITY_0=./testinputs/shakemap.xml
-            - OUTPUT_DAMAGE_CONSUMER_AREAS=/tmp/output/result.json
+            - OUTPUT_DAMAGE_CONSUMER_AREAS=/tmp/output/result_single.json
+    critical-infra-multi:
+        image: 52north/tum-era-critical-infrastructure-analysis-multi:latest
+        build:
+            context: .
+            dockerfile: ./multi.Dockerfile
+        volumes:
+            - ./output:/tmp/output/
+        environment:
+            - INPUT_HAZARD=lahar
+            - INPUT_COUNTRY=ecuador
+            - INPUT_HEIGHT=./testinputs/Lahar_N_VEI3mio_maxheight_25m.xml
+            - INPUT_VELOCITY=./testinputs/Lahar_N_VEI3mio_maxvelocity_25m.xml
+            - OUTPUT_DAMAGE_CONSUMER_AREAS=/tmp/output/result_multi.json

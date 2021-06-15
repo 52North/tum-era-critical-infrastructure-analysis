@@ -19,7 +19,7 @@ if [[ -z "${INPUT_INTENSITY}" ]]; then
         if [[ -z "${INPUT_INTENSITY}" ]]; then
             INPUT_INTENSITY="${!varname}"
         else
-            INPUT_INTENSITY="$INPUT_INTENSITY,${!varname}"
+            INPUT_INTENSITY="$INPUT_INTENSITY ${!varname}"
         fi
         
     done
