@@ -1,0 +1,12 @@
+version: '3.0'
+services:
+    critical-infra:
+        image: 52north/tum-era-critical-infrastructure-analysis:latest
+        build: .
+        volumes:
+            - ./output:/tmp/output/
+        environment:
+            - INPUT_HAZARD=earthquake
+            - INPUT_COUNTRY=peru
+            - INPUT_INTENSITY_0=./testinputs/shakemap.xml
+            - OUTPUT_DAMAGE_CONSUMER_AREAS=/tmp/output/result.json

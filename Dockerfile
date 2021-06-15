@@ -8,3 +8,12 @@ COPY requirements.txt .
 RUN pip3 install -r requirements.txt
 
 COPY . .
+
+ENV INPUT_HAZARD earthquake
+ENV INPUT_COUNTRY ecuador
+ENV INPUT_INTENSITY_0 ./testinputs/shakemap.xml
+ENV OUTPUT_DAMAGE_CONSUMER_AREAS /tmp/output/output.json
+
+RUN chmod +x javaps_wrapper.sh
+
+CMD ["bash", "-c", "./javaps_wrapper.sh"]
