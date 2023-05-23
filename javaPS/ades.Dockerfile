@@ -50,6 +50,9 @@ COPY --from=BUILD /app/javaPS/etc/docker-log4j2.xml /var/lib/jetty/webapps/ROOT/
 copy --from=BUILD /app/javaPS/etc/docker-configuration.json /var/lib/jetty/webapps/ROOT/WEB-INF/config/configuration.json
 
 USER root
+
+RUN echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list
+
 RUN set -ex \
  && apt-get update \
  && apt-get install -y --no-install-recommends jq \
