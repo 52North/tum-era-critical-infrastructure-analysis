@@ -1,0 +1,222 @@
+{
+  "processDescription": {
+    "process": {
+	"id": "org.n52.gfz.riesgos.algorithm.impl.SystemReliabilitySingleProcess",
+	"title": "SystemReliabilitySingleProcess",
+	"description": "Process for performing the reliability of infrastructure networks",
+	"keywords": [
+		"SystemReliability",
+		"Shakemap",
+		"single",
+		"intensity"
+	],
+	"metadata": [],
+	"version": "1.0.0",
+	"jobControlOptions": [
+		"async-execute",
+		"sync-execute"
+	],
+	"outputTransmission": [
+		"value",
+		"reference"
+	],
+	"links": [
+		{
+			"href": "https://riesgos.52north.org/javaps/rest/processes/org.n52.gfz.riesgos.algorithm.impl.SystemReliabilitySingleProcess/jobs",
+			"rel": "execute",
+			"title": "Execute endpoint"
+		}
+	],
+	"inputs": [
+		{
+			"id": "intensity",
+			"title": "intensity",
+			"description": "File with the intensities",
+			"keywords": [],
+			"metadata": [],
+			"input": {
+				"formats": [
+					{
+						"default": true,
+						"mimeType": "text/xml",
+						"schema": "http://earthquake.usgs.gov/eqcenter/shakemap",
+						"encoding": "UTF-8"
+					},
+					{
+						"default": false,
+						"mimeType": "text/xml",
+						"schema": "http://earthquake.usgs.gov/eqcenter/shakemap",
+						"encoding": "UTF-8"
+					}
+				]
+			},
+			"minOccurs": 1,
+			"maxOccurs": 1
+		},
+		{
+			"id": "country",
+			"title": "country",
+			"description": "one of chile, peru or ecuador",
+			"keywords": [],
+			"metadata": [],
+			"input": {
+				"literalDataDomains": [
+					{
+						"valueDefinition": {
+							"allowedValues": [
+								"chile",
+								"ecuador",
+								"peru"
+							]
+						},
+						"dataType": {
+							"name": "string",
+							"reference": null
+						}
+					}
+				]
+			},
+			"minOccurs": 1,
+			"maxOccurs": 1
+		},
+		{
+			"id": "hazard",
+			"title": "hazard",
+			"description": "one of lahar or earthquake",
+			"keywords": [],
+			"metadata": [],
+			"input": {
+				"literalDataDomains": [
+					{
+						"valueDefinition": {
+							"allowedValues": [
+								"earthquake",
+								"lahar"
+							]
+						},
+						"dataType": {
+							"name": "string",
+							"reference": null
+						}
+					}
+				]
+			},
+			"minOccurs": 1,
+			"maxOccurs": 1
+		}
+	],
+	"outputs": [
+		{
+			"id": "damage_consumer_areas",
+			"title": "damage_consumer_areas",
+			"description": "Damage in the consumer area",
+			"keywords": [],
+			"metadata": [],
+			"output": {
+				"formats": [
+					{
+						"default": true,
+						"mimeType": "application/vnd.google-earth.kml+xml",
+						"schema": "http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd"
+					},
+					{
+						"default": false,
+						"mimeType": "application/vnd.google-earth.kml+xml",
+						"schema": "http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd"
+					},
+					{
+						"default": false,
+						"mimeType": "application/x-zipped-shp",
+						"encoding": "base64"
+					},
+					{
+						"default": false,
+						"mimeType": "text/xml"
+					},
+					{
+						"default": false,
+						"mimeType": "text/xml",
+						"encoding": "base64"
+					},
+					{
+						"default": false,
+						"mimeType": "text/xml",
+						"schema": "http://schemas.opengis.net/gml/2.0.0/feature.xsd"
+					},
+					{
+						"default": false,
+						"mimeType": "text/xml",
+						"schema": "http://schemas.opengis.net/gml/2.1.1/feature.xsd"
+					},
+					{
+						"default": false,
+						"mimeType": "text/xml",
+						"schema": "http://schemas.opengis.net/gml/2.1.2.1/feature.xsd"
+					},
+					{
+						"default": false,
+						"mimeType": "text/xml",
+						"schema": "http://schemas.opengis.net/gml/2.1.2/feature.xsd"
+					},
+					{
+						"default": false,
+						"mimeType": "text/xml",
+						"schema": "http://schemas.opengis.net/gml/3.0.0/base/feature.xsd"
+					},
+					{
+						"default": false,
+						"mimeType": "text/xml",
+						"schema": "http://schemas.opengis.net/gml/3.0.1/base/feature.xsd"
+					},
+					{
+						"default": false,
+						"mimeType": "text/xml",
+						"schema": "http://schemas.opengis.net/gml/3.1.0/base/feature.xsd"
+					},
+					{
+						"default": false,
+						"mimeType": "text/xml",
+						"schema": "http://schemas.opengis.net/gml/3.1.1/base/feature.xsd"
+					},
+					{
+						"default": false,
+						"mimeType": "text/xml",
+						"schema": "http://schemas.opengis.net/gml/3.2.1/base/feature.xsd"
+					},
+					{
+						"default": false,
+						"mimeType": "text/xml",
+						"schema": "http://geoserver.itc.nl:8080/wps/schemas/gml/2.1.2/gmlpacket.xsd"
+					},
+					{
+						"default": false,
+						"mimeType": "text/xml",
+						"schema": "http://schemas.opengis.net/gml/2.1.2/gmlpacket.xsd"
+					},
+					{
+						"default": false,
+						"mimeType": "application/vnd.geo+json"
+					}
+				]
+			}
+		}
+	]
+    },
+    "jobControlOptions": [
+      "sync-execute"
+    ],
+    "outputTransmission": [
+      "value"
+    ]
+  },
+  "immediateDeployment": true,
+  "executionUnit": [
+    {
+      "unit": {
+        "type": "docker",
+        "image": "52north/tum-era-critical-infrastructure-analysis-single:latest"
+      }
+    }
+  ],
+  "deploymentProfileName": "http://www.opengis.net/profiles/eoc/dockerizedApplication"
+}

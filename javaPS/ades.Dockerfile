@@ -89,5 +89,13 @@ LABEL org.opencontainers.image.revision "${GIT_COMMIT}"
 ARG BUILD_DATE
 LABEL org.opencontainers.image.created "${BUILD_DATE}"
 
-CMD [ "java", "-jar", "/usr/local/jetty/start.jar" ]
+COPY adessetup.jar /usr/share/
+COPY startup.sh /usr/share/
+COPY processes/ /usr/share/processes/
+
+USER root
+
+RUN chmod +x /usr/share/startup.sh
+
+CMD ["/bin/bash", "/usr/share/startup.sh"]
 ENTRYPOINT [ "/usr/local/bin/faroe-entrypoint.sh", "/docker-entrypoint.sh" ]

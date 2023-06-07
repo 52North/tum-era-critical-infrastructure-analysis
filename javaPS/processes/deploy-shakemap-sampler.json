@@ -1,0 +1,88 @@
+{
+	"processDescription": {
+		"process": {
+			"id": "org.n52.gfz.riesgos.algorithm.impl.shakemap_sampler",
+			"title": "Shakemap sampler",
+			"description": "Process for sampling intensity",
+			"version": "1.3.0",
+			"keywords": [
+				"Shakemap",
+				"sampling",
+				"intensity"
+			],
+			"inputs": [
+				{
+					"id": "intensity_file",
+					"title": "intensity",
+					"description": "File with the intensities",
+					"minOccurs": 1,
+					"maxOccurs": 1,
+					"input": {
+						"formats": [
+							{
+								"mimeType": "text/xml",
+								"schema": "http://earthquake.usgs.gov/eqcenter/shakemap",
+								"encoding": "UTF-8",
+								"default": true
+							}
+						]
+					}
+				},
+				{
+					"id": "random_seed",
+					"title": "random seed",
+					"description": "Random seed for sampling",
+					"minOccurs": 1,
+					"maxOccurs": 1,
+					"input": {
+						"literalDataDomains": [
+							{
+						"valueDefinition": {
+							"anyValue": true
+						},
+								"default": true,
+								"dataType": {
+									"name": "integer",
+							        "reference": null
+								}
+							}
+						]
+					}
+				}
+			],
+			"outputs": [
+				{
+					"id": "intensity_output_file",
+					"title": "sampled intensity",
+					"description": "Sampled intensity",
+					"output": {
+						"formats": [
+							{
+								"mimeType": "text/xml",
+								"schema": "http://earthquake.usgs.gov/eqcenter/shakemap",
+								"encoding": "UTF-8",
+								"default": true
+							}
+						]
+					}
+				}
+			]
+		},
+		"jobControlOptions": [
+			"sync-execute"
+		],
+		"outputTransmission": [
+			"value"
+		]
+	},
+	"immediateDeployment": true,
+	"executionUnit": [
+		{
+			"unit": {
+				"type": "docker",
+				"image": "52north/shakemap_sampler:latest"
+			}
+		}
+	],
+	"deploymentProfileName": "http://www.opengis.net/profiles/eoc/dockerizedApplication"
+}
