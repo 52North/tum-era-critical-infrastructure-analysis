@@ -4,7 +4,7 @@ WORKDIR /app
 
 #clone javaPS
 RUN git clone https://github.com/52North/javaPS.git \
-	&& git -C ./javaPS checkout develop && cd ./javaPS && git status
+	&& git -C ./javaPS checkout tags/v1.9.0 && cd ./javaPS && git status
 
 #clone javaPS docker backend
 RUN git clone https://github.com/52North/javaps-docker-backend.git \
